@@ -9,12 +9,9 @@ buildgo:
 builddocker:
 	docker build --rm --tag=johannesboyne/godockersample .
 
-buildp:
-	make buildgo
-	make builddocker
+buildp: buildgo builddocker
 
-run:
-	make buildp
+run: buildp
 	docker run \
 		-e HELLO=world \
 		-p 1337:1337 johannesboyne/godockersample
